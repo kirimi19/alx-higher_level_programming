@@ -1,23 +1,28 @@
 #!/usr/bin/python3
-"""task 6 modele"""
 
-
+"""
+function that finds a peak in a list of unsorted integers
+"""
 def find_peak(list_of_integers):
-    """Return a peak in a list of unsorted integers."""
-    if list_of_integers == []:
+    """
+    first or last element is peak element
+    """
+    n = len(list_of_integers)
+    arr = list_of_integers
+    if not arr:
         return None
-
-    size = len(list_of_integers)
-    if size == 1:
-        return list_of_integers[0]
-    elif size == 2:
-        return max(list_of_integers)
-
-    mid = int(size / 2)
-    peak = list_of_integers[mid]
-    if peak > list_of_integers[mid - 1] and peak > list_of_integers[mid + 1]:
-        return peak
-    elif peak < list_of_integers[mid - 1]:
-        return find_peak(list_of_integers[:mid])
-    else:
-        return find_peak(list_of_integers[mid + 1:])
+    if (n==1):
+        return arr[0]
+    if (arr[0] >= arr[1]):
+        return arr[0]
+    if (arr[n-1] >= arr[n-2]):
+        return arr[n-1]
+    """
+    check for every other element
+    """
+    for i in range (1, n-1):
+        """
+        check if the neighbour are smaller
+        """
+        if (arr[i] >= arr[i-1] and arr[i] >= arr[i+1]):
+            return i
